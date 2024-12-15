@@ -51,20 +51,6 @@
         nav a:hover {
             color: #ffddc1;
         }
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background-image: url('placeholder-hero.jpg'); /* Replace with provided hero image */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        .hero h2 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-        }
         .categories {
             display: flex;
             justify-content: space-between;
@@ -110,30 +96,6 @@
         footer p {
             margin: 0;
         }
-        .item {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .item img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-        .item h3 {
-            margin: 15px 0;
-            font-size: 1.8em;
-            color: #ff5722;
-        }
-        .item p {
-            color: #555;
-            line-height: 1.6;
-            text-align: left;
-        }
     </style>
 </head>
 <body>
@@ -154,8 +116,6 @@
     <a href="water-slides.html">Water Slides</a>
     <a href="party-extras.html">Party Extras</a>
 </nav>
-
-
 
 <div class="categories">
     <div class="category">
@@ -185,59 +145,8 @@
     <p>&copy; 2024 Bounce House Tampa. All rights reserved.</p>
 </footer>
 
-<!-- Bounce Houses Page Content -->
-<div id="bounce-houses-page" style="display: none;">
-    <header>
-        <h1>Bounce Houses</h1>
-    </header>
-
-    <div class="item">
-        <img src="https://m.media-amazon.com/images/I/71wn-qpIDjL._AC_SX679_.jpg" alt="Bounce House Castle">
-        <h3>Bounce House Castle</h3>
-        <p>
-            <strong>12ft x 9ft x 7ft</strong><br>
-            <strong>Features:</strong><br>
-            Large bounce area<br>
-            Netted windows for ventilation<br>
-            <strong>Rain Policy:</strong><br>
-            Reschedule free with 24 hours' notice if rain is expected.<br>
-            <strong>Safety Tips:</strong><br>
-            Limit 2-8 kids at a time, similar sizes only.<br>
-            Slides: one person per lane.<br>
-            <strong>Clean & Safe:</strong><br>
-            All units are cleaned and sanitized before use.<br>
-            <strong>Included:</strong><br>
-            Blower<br>
-            Extension cord<br>
-            Stakes or sandbags (based on surface type)<br>
-            <strong>Setup Checklist:</strong><br>
-            Clear, ample space with a 100ft path to setup.<br>
-            Dedicated outlet within 100 feet.<br>
-            Water source & hose within 100 feet (for water slides).
-        </p>
-    </div>
-</div>
-
-<script>
-    function navigateTo(sectionId) {
-        const allSections = document.querySelectorAll('.categories, .item');
-        allSections.forEach(section => {
-            section.style.display = 'none';
-        });
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.style.display = 'block';
-        }
-    }
-
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.getAttribute('href').split('.')[0] + '-page';
-            navigateTo(targetId);
-        });
-    });
-</script>
+</body>
+</html>
 
 </body>
 </html>
