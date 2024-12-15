@@ -137,6 +137,7 @@
         <div id="cart-items"></div>
         <div class="cart-footer">
             <strong>Total: $<span id="cart-total">0.00</span></strong>
+            <button onclick="checkout()" style="margin-top: 10px; padding: 10px; background: #ff6347; color: white; border: none; border-radius: 5px; cursor: pointer; width: 100%;">Checkout</button>
         </div>
     </div>
 </div>
@@ -206,6 +207,12 @@
     function removeFromCart(index) {
         cart.splice(index, 1);
         updateCart();
+    }
+</script>
+
+<script>
+    function checkout() {
+        window.location.href = 'checkout.html';
     }
 </script>
 
