@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bounce House Tampa</title>
+    <title>Tampa Bounce House & Party Rentals</title>
     <style>
         body {
             font-family: 'Math', sans-serif;
@@ -13,8 +13,8 @@
             color: #333;
         }
         a {
-            text-decoration: none; /* Removes underlines */
-            color: inherit; /* Keeps the color consistent */
+            text-decoration: none;
+            color: inherit;
         }
         header {
             background: linear-gradient(90deg, #ff6347, #ff4500);
@@ -31,36 +31,87 @@
             padding-left: 20px;
         }
         .contact-info {
-            padding-right: 20px;
             text-align: right;
-        }
-        .contact-info p {
-            margin: 0;
-            font-size: 1em;
+            margin-right: 20px;
+            font-weight: bold;
         }
         nav {
             display: flex;
             justify-content: center;
-            background-color: #ff5722;
+            background: linear-gradient(90deg, #ff6347, #ff4500);
             padding: 10px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         nav a {
-            color: white;
-            text-decoration: none; /* Ensures no underlines */
             margin: 0 20px;
             font-size: 1.2em;
+            color: white;
             transition: color 0.3s ease;
         }
         nav a:hover {
             color: #ffddc1;
         }
+        .cart-container {
+            position: relative;
+            text-align: right;
+            margin-right: 20px;
+        }
+        .cart-button {
+            padding: 10px;
+            background: linear-gradient(90deg, #ff6347, #ff4500);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .cart-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: none;
+            z-index: 10;
+        }
+        .cart-dropdown.open {
+            display: block;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-title {
+            font-size: 1em;
+            margin: 0;
+        }
+        .cart-item-price {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .cart-footer {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
         .categories {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: nowrap;
+            justify-content: space-around;
+            flex-wrap: wrap;
             padding: 20px;
-            overflow-x: auto;
         }
         .category {
             text-align: center;
@@ -72,6 +123,10 @@
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
         .category img {
             max-width: 100%;
             border-top-left-radius: 12px;
@@ -82,14 +137,6 @@
             font-size: 1.6em;
             color: #ff5722;
         }
-        .category p {
-            padding: 0 15px 20px;
-            color: #555;
-        }
-        .category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
         footer {
             text-align: center;
             padding: 20px 0;
@@ -97,60 +144,89 @@
             color: white;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
-        footer p {
-            margin: 0;
-        }
     </style>
 </head>
 <body>
-
 <header>
     <img src="https://res.cloudinary.com/dfuk8mgot/image/upload/v1734210962/logo_for_bht-removebg_-_Copy_vkoz1z.png" alt="Bounce House Tampa Logo" style="max-height: 160px; margin-left: 20px;">
     <h1 style="font-family: 'Math', sans-serif; font-weight: bold;">Tampa Bounce House & Party Rentals</h1>
-    <div class="contact-info">
-        <p>Contact Me</p>
-        <p>Phone: 813-956-1114</p>
-        <p>Email: bouncehousetampa@aol.com</p>
-    </div>
+    <div class="contact-info">813-956-1114<br>bouncehousetampa@aol.com</div>
 </header>
-
+<div class="cart-container">
+    <button class="cart-button" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+    <div id="cart-dropdown" class="cart-dropdown">
+        <div id="cart-items"></div>
+        <div class="cart-footer"><strong>Total: $<span id="cart-total">0.00</span></strong></div>
+    </div>
+</div>
 <nav>
-    <a href="https://josephhomza.github.io/Bounce-House-Tampa/index.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="bounce-houses.html">Bounce Houses</a>
     <a href="water-slides.html">Water Slides</a>
     <a href="party-extras.html">Party Extras</a>
+    <a href="contact.html">Contact</a>
+    <a href="delivery-area.html">Delivery Area</a>
 </nav>
-
 <div class="categories">
     <div class="category">
-        <a href="bounce-houses.html">
-            <h3>Bounce Houses</h3>
-            <p style='font-weight: bold; text-align: center;'>$180-440 per day</p>
-            <img src="https://m.media-amazon.com/images/I/81Pmc3FmaDL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Bounce Houses">
-        </a>
-        <p>Fun and safe inflatables for kids to enjoy at any event.</p>
+        <a href="bounce-houses.html"><h3>Bounce Houses</h3>
+            <img src="https://m.media-amazon.com/images/I/81Pmc3FmaDL.__AC_SY300_SX300_QL70_FMwebp_.jpg">
+            <p>$180-440 per day</p></a>
+        <button onclick="addToCart('Bounce Houses', 180, 'https://m.media-amazon.com/images/I/81Pmc3FmaDL.__AC_SY300_SX300_QL70_FMwebp_.jpg')">Add to Cart</button>
     </div>
     <div class="category">
-        <a href="water-slides.html">
-            <h3>Water Slides</h3>
-            <p style='font-weight: bold; text-align: center;'>$220-440 per day</p>
-            <img src="https://m.media-amazon.com/images/I/71Ri0U2gEUL._AC_SX679_.jpg" alt="Water Slides">
-        </a>
-        <p>Cool off with our thrilling water slides perfect for summer parties.</p>
+        <a href="water-slides.html"><h3>Water Slides</h3>
+            <img src="https://m.media-amazon.com/images/I/71Ri0U2gEUL._AC_SX679_.jpg">
+            <p>$220-440 per day</p></a>
+        <button onclick="addToCart('Water Slides', 220, 'https://m.media-amazon.com/images/I/71Ri0U2gEUL._AC_SX679_.jpg')">Add to Cart</button>
     </div>
     <div class="category">
-        <a href="party-extras.html">
-            <h3>Party Extras</h3>
-            <p style='font-weight: bold; text-align: center;'>$40-200 per day</p>
-            <img src="https://www.nmpartyrental.com/wp-content/uploads/2024/04/corporate-events-gm_1712410570_big.jpg" alt="Party Extras">
-        </a>
-        <p>Tables, chairs, and more to complete your event setup.</p>
+        <a href="party-extras.html"><h3>Party Extras</h3>
+            <img src="https://www.nmpartyrental.com/wp-content/uploads/2024/04/corporate-events-gm_1712410570_big.jpg">
+            <p>$40-200 per day</p></a>
+        <button onclick="addToCart('Party Extras', 40, 'https://www.nmpartyrental.com/wp-content/uploads/2024/04/corporate-events-gm_1712410570_big.jpg')">Add to Cart</button>
     </div>
 </div>
-
+<script>
+    let cart = [];
+    function toggleCart() {
+        const dropdown = document.getElementById("cart-dropdown");
+        dropdown.classList.toggle("open");
+    }
+    function addToCart(name, price, image) {
+        const taxRate = 0.075;
+        const totalPrice = price + price * taxRate;
+        cart.push({ name, price: totalPrice, image });
+        updateCart();
+    }
+    function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        const cartCount = document.getElementById("cart-count");
+        const cartTotal = document.getElementById("cart-total");
+        cartItems.innerHTML = "";
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price;
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <p class="cart-item-title">${item.name}</p>
+                        <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background: none; border: none; color: red; cursor: pointer;">&#10006;</button>
+                </div>`;
+        });
+        cartCount.innerText = cart.length;
+        cartTotal.innerText = total.toFixed(2);
+    }
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+</script>
 <footer>
-    <p>&copy; 2024 Bounce House Tampa. All rights reserved.</p>
+    <p>&copy; 2024 Tampa Bounce House & Party Rentals. All rights reserved.</p>
 </footer>
-
 </body>
 </html>
