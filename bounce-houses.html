@@ -6,7 +6,7 @@
     <title>Bounce Houses</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Math', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
@@ -16,117 +16,194 @@
             background: linear-gradient(90deg, #ff6347, #ff4500);
             color: white;
             padding: 30px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         header h1 {
             margin: 0;
             font-size: 2.5em;
-            padding-left: 20px;
         }
-        .contact-info {
-            padding-right: 20px;
+        .cart-container {
+            position: relative;
+            text-align: right;
+            margin: 20px;
+        }
+        .cart-button {
+            padding: 10px;
+            background: linear-gradient(90deg, #ff6347, #ff4500);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .cart-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: none;
+            z-index: 10;
+        }
+        .cart-dropdown.open {
+            display: block;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-title {
+            font-size: 1em;
+            margin: 0;
+        }
+        .cart-item-price {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .cart-footer {
+            padding: 10px;
+            border-top: 1px solid #ddd;
             text-align: right;
         }
-        .contact-info p {
-            margin: 0;
-            font-size: 1em;
-        }
-        nav {
+        .items {
             display: flex;
-            justify-content: center;
-            background-color: #ff5722;
-            padding: 10px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.2em;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #ffddc1;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
         }
         .item {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
+            background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
+            width: 30%;
+            margin: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            padding: 15px;
         }
         .item img {
             max-width: 100%;
             border-radius: 8px;
         }
         .item h3 {
-            margin: 15px 0;
-            font-size: 1.8em;
             color: #ff5722;
+            font-size: 1.5em;
+            margin: 10px 0;
         }
         .item p {
             color: #555;
-            line-height: 1.6;
-            text-align: left;
+            margin: 10px 0;
         }
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background: linear-gradient(90deg, #ff6347, #ff4500);
+        .item button {
+            padding: 10px;
+            background: #ff5722;
             color: white;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-        footer p {
-            margin: 0;
+        .item button:hover {
+            background: #e64a19;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://res.cloudinary.com/dfuk8mgot/image/upload/v1734210962/logo_for_bht-removebg_-_Copy_vkoz1z.png" alt="Bounce House Tampa Logo" style="max-height: 160px; margin-left: 20px;">
     <h1>Bounce Houses</h1>
-    <div class="contact-info">
-        <p>Contact Me</p>
-        <p>Phone: 813-956-1114</p>
-        <p>Email: bouncehousetampa@aol.com</p>
-    </div>
 </header>
 
-<nav>
-    <a href="https://josephhomza.github.io/Bounce-House-Tampa/index.html">Home</a>
-    <a href="bounce-houses.html" style="text-decoration: none;">Bounce Houses</a>
-    <a href="water-slides.html">Water Slides</a>
-    <a href="party-extras.html">Party Extras</a>
-</nav>
-
-<div class="item">
-    <img src="https://m.media-amazon.com/images/I/71wn-qpIDjL._AC_SX679_.jpg" alt="Bounce House Castle">
-    <h3>Bounce House Castle</h3>
-    <p>
-        <strong>$180 per day</strong><br>
-        <strong>12ft x 9ft x 7ft</strong><br>
-        Large bounce area<br>
-        Netted windows for ventilation<br>
-        <strong>Safety Tips:</strong><br>
-        Limit 2-8 kids at a time.<br>
-        Slides: one person per lane.<br>
-        <strong>Clean & Safe:</strong><br>
-        All units are cleaned and sanitized before use.<br>
-        <strong>Included:</strong><br>
-        Blower, Extension cord, Stakes or sandbags<br>
-    </p>
+<div class="cart-container">
+    <button class="cart-button" onclick="toggleCart()">Cart (<span id='cart-count'>0</span>)</button>
+    <div id="cart-dropdown" class="cart-dropdown">
+        <div id="cart-items"></div>
+        <div class="cart-footer">
+            <strong>Total: $<span id="cart-total">0.00</span></strong>
+        </div>
+    </div>
 </div>
 
-<footer>
-    <p>&copy; 2024 Bounce House Tampa. All rights reserved.</p>
-</footer>
+<div class="items">
+    <div class="item">
+        <img src="https://m.media-amazon.com/images/I/81Pmc3FmaDL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Bounce House Castle">
+        <h3>Bounce House Castle</h3>
+        <p>$180 per day</p>
+        <p>12ft x 9ft x 7ft<br>Large bounce area<br>Netted windows for ventilation</p>
+        <button onclick="addToCart('Bounce House Castle', 180, 'https://m.media-amazon.com/images/I/81Pmc3FmaDL.__AC_SY300_SX300_QL70_FMwebp_.jpg')">Add to Cart</button>
+    </div>
+    <div class="item">
+        <img src="https://m.media-amazon.com/images/I/81Pmc3FmaDL._AC_SX679_.jpg" alt="Melting Arctic Bounce House">
+        <h3>Melting Arctic Bounce House</h3>
+        <p>$440 per day</p>
+        <p>13ft x 13ft x 16ft<br>Large bounce area<br>Netted windows for ventilation</p>
+        <button onclick="addToCart('Melting Arctic Bounce House', 440, 'https://m.media-amazon.com/images/I/81Pmc3FmaDL._AC_SX679_.jpg')">Add to Cart</button>
+    </div>
+    <div class="item">
+        <img src="https://m.media-amazon.com/images/I/61quTZA43fL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Unicorn Bounce House">
+        <h3>Unicorn Bounce House</h3>
+        <p>$180 per day</p>
+        <p>10ft x 6.8ft x 6.5ft<br>Large bounce area<br>Netted windows for ventilation</p>
+        <button onclick="addToCart('Unicorn Bounce House', 180, 'https://m.media-amazon.com/images/I/61quTZA43fL.__AC_SY300_SX300_QL70_FMwebp_.jpg')">Add to Cart</button>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+
+    function toggleCart() {
+        const cartDropdown = document.getElementById('cart-dropdown');
+        cartDropdown.classList.toggle('open');
+    }
+
+    function addToCart(itemName, itemPrice, itemImage) {
+        const taxRate = 0.075;
+        const totalPrice = itemPrice + itemPrice * taxRate;
+        cart.push({ name: itemName, price: totalPrice, image: itemImage });
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById("cart-items");
+        const cartCount = document.getElementById("cart-count");
+        const cartTotal = document.getElementById("cart-total");
+
+        cartItems.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+            cartItems.innerHTML += `<div class='cart-item'>
+                <img src="${item.image}" alt="${item.name}">
+                <div class='cart-item-details'>
+                    <p class='cart-item-title'>${item.name}<button style='color: red; border: none; background: none; cursor: pointer;' onclick='removeFromCart(${index})'>&#10006;</button></p>
+                    <p class='cart-item-price'>$${item.price.toFixed(2)}</p>
+                </div>
+            </div>`;
+        });
+
+        cartCount.innerText = cart.length;
+        cartTotal.innerText = total.toFixed(2);
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+</script>
 
 </body>
 </html>
+
